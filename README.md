@@ -3,7 +3,7 @@ Code for Context-Aware Image Inpainting with Learned Semantic Priors, IJCAI 2021
 
 Pretrained models and code will comming soon.
 
-So, in the following days, I will complete this project step by step. There may be many changes until the completion, but I hope I can provide a detailed introduction about our work, especially for the dataset processing part and evaluation part, which is important for the beginners. Thank you for all of your interest!
+So, in the following days, I will complete this project step by step. There may be many changes until the completion, but I hope I can provide a detailed introduction about our work, especially for the dataset processing part and evaluation part, which are important for the beginners. Thank you for all of your interest!
 
 [Paper on ArXiv](https://arxiv.org/abs/2106.07220)
 ### Introduction:
@@ -35,7 +35,7 @@ python flist.py --path path_to_places2_train_set --output ./datasets/places_trai
 ### 2) Irregular Masks
 We use the irregular mask dataset provided by [Liu et al.](https://arxiv.org/abs/1804.07723). You can download publically available Irregular Mask Dataset from [their website](https://nv-adlr.github.io/publication/partialconv-inpainting).
 1) About dataset usage. We only use the testing mask set (12000) to train and test our model. You can perform more complicatd argumentation methods for masks, such as rotation, translation or randomcrop as suggested by [EC](https://github.com/knazeri/edge-connect).
-2) About test mask selection. I our case, we use [`flist.py`](flist.py) to generate masks file lists as explained above. Then, we generated random selected mask index files using numpy for our evaluation.
+2) About test mask selection. In our case, we use [`flist.py`](flist.py) to generate mask file lists as explained above. Then, we generated random selected mask index files using numpy for our evaluation.
 
 Alternatively, you can download [Quick Draw Irregular Mask Dataset](https://github.com/karfly/qd-imd) by Karim Iskakov which is combination of 50 million strokes drawn by human hand.
 
