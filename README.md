@@ -70,7 +70,7 @@ If you want to retrain your model, you need add
 ```bash
 --pretrained True --pretrained_sr checkpoints/of/your/model --start_epoch 4
 ```
-During our training stage, we directly use the first 50 image-mask pairs in test set to evaluate the performance of current model. This num can be changed with parameter --val_prob_num. Besides, you can also manually split validation set to evaluate your model, in which case you need change the --test_img_flist and --test_mask_index. 
+During our training stage, we --test_img_flist and --test_mask_index to evaluate the performance of current model. You can change the evaluation number with parameter --val_prob_num. 
 
 For Paris dataset, we train our model for 70 epochs and we deacy the learning rete at about 50 epochs with 0.1. Besides, in the last 10 epochs we remove the prior reconstruction loss as we find this can further improve the performance. For Celeba and Places2 dataset, we only deacy the learning rate at about 30 epochs and train our model for futher 10 epochs.
 
