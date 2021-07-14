@@ -1,10 +1,9 @@
 ### SPL：Context-Aware Image Inpainting with Learned Semantic Priors
 Code for Context-Aware Image Inpainting with Learned Semantic Priors, IJCAI 2021
 
+The pretrained models are uploaded. I will further complete other meterials soon. The code has not been totally tested, so if you have any trouble please make issues or email to me. Thank you for all of your interest!
 
-So, in the following days, I will complete this project step by step. There may be many changes until the completion, but I hope I can provide a detailed introduction about our work, especially for the dataset processing part and evaluation part, which are important for the beginners. Thank you for all of your interest!
-
-[Paper on ArXiv](https://arxiv.org/abs/2106.07220)
+[Paper on ArXiv](https://arxiv.org/abs/2106.07220) | [Pretrained Models](https://drive.google.com/drive/folders/1oAr61KlWVTypHgL_DV4rr1YbAw4BDf0N?usp=sharing)
 ### Introduction:
 We introduce pretext tasks that are semantically meaningful to estimating the missing contents. In particular, we perform knowledge distillation on pretext models and adapt the features to image inpainting. The learned semantic priors ought to be partially invariant between the high-level pretext task and low-level image inpainting, which not only help to understand the global context but also provide structural guidance for the restoration of local textures. Based on the semantic priors, we further propose a context-aware image inpainting model, which adaptively integrates global semantics and local features in a unified image generator. The semantic learner and the image generator are trained in an end-to-end manner. More details can be found in our [paper](https://arxiv.org/abs/2106.07220).
 <p align='center'>  
@@ -36,7 +35,7 @@ python flist.py --path path_to_places2_train_set --output ./datasets/places_trai
 ### 2) Irregular Masks
 We use the irregular mask dataset provided by [Liu et al.](https://arxiv.org/abs/1804.07723). You can download publically available Irregular Mask Dataset from [their website](https://nv-adlr.github.io/publication/partialconv-inpainting).
 1) About dataset usage. We only use the testing mask set (12000) to train and test our model. You can perform more complicatd argumentation methods for masks, such as rotation, translation or randomcrop as suggested by [EC](https://github.com/knazeri/edge-connect).
-2) About test mask selection. In our case, we use [`flist.py`](flist.py) to generate mask file lists as explained above. Then, we generated random selected mask index files using numpy for our evaluation. Such as:
+2) About test mask selection. In our case, we use [`flist.py`](flist.py) to generate mask file lists as explained above. Then, we generate random selected mask index files using numpy for our evaluation. Such as:
 ```bash
 python
 import numpy as np
@@ -48,7 +47,9 @@ Alternatively, you can download [Quick Draw Irregular Mask Dataset](https://gith
 
 ## Getting Strated
 
-Make another directory, e.g ./pretrained_ASL, and download the weights of [TResNet_L](https://github.com/Alibaba-MIIL/ASL/blob/main/MODEL_ZOO.md) pretrained on OpenImage dataset to this directory.
+Download the pre-trained models using the following links [Pretrained Models](https://drive.google.com/drive/folders/1oAr61KlWVTypHgL_DV4rr1YbAw4BDf0N?usp=sharing) and copy them under ./checkpoints directory. 
+
+(For training) Make another directory, e.g ./pretrained_ASL, and download the weights of [TResNet_L](https://github.com/Alibaba-MIIL/ASL/blob/main/MODEL_ZOO.md) pretrained on OpenImage dataset to this directory.
 
 Install torchlight
 ```bash
@@ -70,10 +71,34 @@ If you want to retrain your model, you need add
 ```bash
 --pretrained True --pretrained_sr checkpoints/of/your/model --start_epoch 4
 ```
-During our training stage, we --test_img_flist and --test_mask_index to evaluate the performance of current model. You can change the evaluation number with parameter --val_prob_num. 
+During our training stage, we use --test_img_flist and --test_mask_index to evaluate the performance of current model. You can change the evaluation number with parameter --val_prob_num or directly remove the parameter --with_test, in which case only the latest model weights will be saved after each epoch.
 
 For Paris dataset, we train our model for 70 epochs and we deacy the learning rete at about 50 epochs with 0.1. Besides, in the last 10 epochs we remove the prior reconstruction loss as we find this can further improve the performance. For Celeba and Places2 dataset, we only deacy the learning rate at about 30 epochs and train our model for futher 10 epochs.
 
 In our experiments, we usually obtain the best model in the last 4 epochs.
 
 ### 2) Test and Evaluation
+The evaluation commond is as follows:
+```bash
+CUDA_VISIBLE_DEVICES=0 python eval_final.py --bs 50 --gpus 1 --dataset paris \
+        --img_flist your/test/image/flist/ --mask_flist your/flist/of/masks --mask_index your/npy/file/to/form/img-mask/pairs \
+        --model checkpoints/x_launcherRN_bs_4_epoch_best.pt --save --save_path ./test_results
+```
+1) If you cannot successfully install the inplace-abn module, you can comment the ninth line (from src.models import create_model) in [models_inpaint.py](models_inpaint.py), the ASL model will not be established and you can still evaluate our model.
+2) This commond will print the average PSNR, SSIM and L1 results and also save the predicted results in --save_path. You can remove the paramter --save and no images will be saved.
+
+## Others
+
+## Cite Us
+Please cite us if you find this work helps.
+```
+@article{zhang2021context,
+  title={Context-Aware Image Inpainting with Learned Semantic Priors},
+  author={Zhang, Wendong and Zhu, Junwei and Tai, Ying and Wang, Yunbo and Chu, Wenqing and Ni, Bingbing and Wang, Chengjie and Yang, Xiaokang},
+  journal={arXiv preprint arXiv:2106.07220},
+  year={2021}
+}
+```
+
+## Appreciation
+1) The codes refer to [EC](https://github.com/knazeri/edge-connect) and [RN](https://github.com/geekyutao/RN). Thanks for the authors of them！
