@@ -344,7 +344,7 @@ if __name__ == '__main__':
                 FM_initial = 0.0
 
         test_psnr = test(model, test_data_loader, epoch)
-        if opt.rank == 0:
+        if opt.rank == 0 and opt.with_test:
             torchlight_write.print_log("PSNR: %f" % test_psnr)
             torchlight_write.print_log('Best PSNR: %f' % best_psnr)
             checkpoint('latest')
@@ -352,3 +352,5 @@ if __name__ == '__main__':
                 best_psnr = test_psnr
                 checkpoint('best')
                 torchlight_write.print_log('Best PSNR: %f' % best_psnr)
+        else:
+            checkpoint('latest')
