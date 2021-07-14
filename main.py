@@ -343,8 +343,9 @@ if __name__ == '__main__':
             if epoch > opt.prior_cut_epoch and opt.dataset == 'paris':
                 FM_initial = 0.0
 
-        test_psnr = test(model, test_data_loader, epoch)
+       
         if opt.rank == 0 and opt.with_test:
+            test_psnr = test(model, test_data_loader, epoch)
             torchlight_write.print_log("PSNR: %f" % test_psnr)
             torchlight_write.print_log('Best PSNR: %f' % best_psnr)
             checkpoint('latest')
