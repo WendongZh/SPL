@@ -14,7 +14,7 @@ We introduce pretext tasks that are semantically meaningful to estimating the mi
 - Python 3.7
 - PyTorch 1.8 (1.6+ may also work)
 - NVIDIA GPU + CUDA cuDNN
-- [Inplace_Abn](https://github.com/mapillary/inplace_abn) (only for training with [ASL_TRresNet](https://github.com/Alibaba-MIIL/ASL) model)
+- [Inplace_Abn](https://github.com/mapillary/inplace_abn) (only needed for training our model, used in [ASL_TRresNet](https://github.com/Alibaba-MIIL/ASL) model)
 - torchlight (We only use it to record the printed information. You can change it as you want.)
 
 ## Datasets
