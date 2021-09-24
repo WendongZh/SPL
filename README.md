@@ -98,6 +98,22 @@ Please cite us if you find this work helps.
   journal={arXiv preprint arXiv:2106.07220},
   year={2021}
 }
+
+@inproceedings{DBLP:conf/ijcai/ZhangZTWCNWY21,
+  author    = {Wendong Zhang and
+               Junwei Zhu and
+               Ying Tai and
+               Yunbo Wang and
+               Wenqing Chu and
+               Bingbing Ni and
+               Chengjie Wang and
+               Xiaokang Yang},
+  editor    = {Zhi{-}Hua Zhou},
+  title     = {Context-Aware Image Inpainting with Learned Semantic Priors},
+  booktitle = {IJCAI},
+  pages     = {1323--1329},
+  year      = {2021},
+}
 ```
 
 ## Appreciation
