@@ -108,7 +108,6 @@ Please cite us if you find this work helps.
                Bingbing Ni and
                Chengjie Wang and
                Xiaokang Yang},
-  editor    = {Zhi{-}Hua Zhou},
   title     = {Context-Aware Image Inpainting with Learned Semantic Priors},
   booktitle = {IJCAI},
   pages     = {1323--1329},
