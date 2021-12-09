@@ -7,7 +7,7 @@ The pretrained models are uploaded. I will further complete other meterials soon
 ### Introduction:
 We introduce pretext tasks that are semantically meaningful to estimating the missing contents. In particular, we perform knowledge distillation on pretext models and adapt the features to image inpainting. The learned semantic priors ought to be partially invariant between the high-level pretext task and low-level image inpainting, which not only help to understand the global context but also provide structural guidance for the restoration of local textures. Based on the semantic priors, we further propose a context-aware image inpainting model, which adaptively integrates global semantics and local features in a unified image generator. The semantic learner and the image generator are trained in an end-to-end manner. More details can be found in our [paper](https://arxiv.org/abs/2106.07220).
 <p align='center'>  
-  <img src='https://github.com/WendongZh/SPN/blob/main/SPN.PNG' width='870'/>
+  <img src='https://github.com/WendongZh/SPL/blob/main/img/results.PNG' width='870'/>
 </p>
 
 ## Prerequisites
